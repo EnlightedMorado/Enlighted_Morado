@@ -6,7 +6,7 @@
 /*   By: jvasquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 15:26:13 by jvasquez          #+#    #+#             */
-/*   Updated: 2022/11/17 01:20:10 by jvasquez         ###   ########.fr       */
+/*   Updated: 2022/11/17 01:53:38 by jvasquez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,13 @@ int	frase(int v)
 	strcpy(files[0], "src/adjetivos");
 	strcpy(files[1], "src/sujetos");
 	strcpy(files[2], "src/predicados");
-	i = 3;
-	while (i--)
-		fd[i] = open(files[i], O_RDONLY);
-	srand(v);
 	i = -1;
 	while (++i < 3)
+	{
+		fd[i] = open(files[i], O_RDONLY);
+		srand(v);
 		print_wocr(rnd_line(line_count(files[i]), fd[i]));
+	}
 	printf("\n");
 	i = 3;
 	while (i--)
