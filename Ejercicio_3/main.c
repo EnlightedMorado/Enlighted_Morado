@@ -6,7 +6,7 @@
 /*   By: jvasquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 15:26:13 by jvasquez          #+#    #+#             */
-/*   Updated: 2022/11/17 01:53:38 by jvasquez         ###   ########.fr       */
+/*   Updated: 2022/11/17 02:14:52 by jvasquez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,13 @@ char *rnd_line(int opc, int fd)
 	char	*linea;
 	int	i;
 
-	i = rand() % opc + 1;
+	i = rand() % opc;
+	linea = get_next_line(fd);
 	while (i--)
+	{
+		free(linea);
 		linea = get_next_line(fd);
+	}
 	return (linea);
 }
 
@@ -80,7 +84,11 @@ int	frase(int v)
 	printf("\n");
 	i = 3;
 	while (i--)
+	{
 		close(fd[i]);
+		free (files[i]);
+	}
+	free(files);
 	return (0);
 }
 
